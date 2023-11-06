@@ -42,6 +42,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CatalogoarticulosComponent } from './catalogoarticulos/catalogoarticulos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { CatalogoMedicamentosComponent } from './catalogo-medicamentos/catalogo-medicamentos.component';
 
 const antdModule = [
   NzDropDownModule,
@@ -87,7 +88,8 @@ const antdModule = [
   
     DashboardComponent,
        CatalogoarticulosComponent,
-       UsuariosComponent
+       UsuariosComponent,
+       CatalogoMedicamentosComponent
   ],
   imports: [
     CommonModule,

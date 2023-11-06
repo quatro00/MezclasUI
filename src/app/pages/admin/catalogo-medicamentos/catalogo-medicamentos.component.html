@@ -1,0 +1,109 @@
+<div nz-row nzGutter="25">
+    <!-- skeleton -->
+   <ng-template #loadingSkeleton>
+     <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzShape]="circle" [nzActive]="true"
+       [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+   </ng-template>
+   <!-- skeleton -->
+   <div nz-col nzXs="24" nzMd="12">
+     <ng-template #newItem>
+       <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Nombre:</nz-form-label>
+              <input formControlName="nombre" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Nombre del usuario">
+            </nz-form-control>
+          </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+            <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Unidad:</nz-form-label>
+            <nz-select formControlName="tipoMedicamentoId" class="min-w-[260px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[5px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60" name="first">
+              <nz-option *ngFor="let item of TipoMedicamento" nzValue="{{item.id}}" nzLabel="{{item.descripcion}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+            <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Rol:</nz-form-label>
+            <nz-select formControlName="unidadMedidaId" class="min-w-[260px] capitalize [&>nz-select-top-control]:border-normal dark:[&>nz-select-top-control]:border-white/10 [&>nz-select-top-control]:bg-white [&>nz-select-top-control]:dark:bg-white/10 [&>nz-select-top-control]:shadow-none [&>nz-select-top-control]:text-dark [&>nz-select-top-control]:dark:text-white/60 [&>nz-select-top-control]:h-[50px] [&>nz-select-top-control]:flex [&>nz-select-top-control]:items-center [&>nz-select-top-control]:rounded-[5px] [&>nz-select-top-control]:px-[20px] [&>.ant-select-arrow]:text-theme-gray dark:[&>.ant-select-arrow]:text-white/60" name="first">
+              <nz-option *ngFor="let item of UnidadMedida" nzValue="{{item.id}}" nzLabel="{{item.descripcion}}"></nz-option>
+            </nz-select>
+          </nz-form-control>
+          </nz-form-item>
+     
+       
+        
+
+         
+          
+
+       </form>
+     </ng-template>
+     <ng-template #modalFooter>
+        <button  class="items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"nz-button  (click)="submitForm()" [nzLoading]="isLoading">Aceptar</button>
+      </ng-template>
+     <!-- :End New project added -->
+   </div>
+   
+   <div nz-col nzXs="24" class="mb-[25px]">
+     <ng-container *ngIf="loadCatalogo_1 && loadCatalogo_2 && loadCatalogo_3; else loadingSkeleton">
+       <div nz-col nzXs="24" class="mb-[25px]">
+         <!-- New Contact -->
+         <div class="flex items-center justify-center md:justify-end">
+          <button class="flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]" nz-button (click)="showNew(newItem, modalFooter)">
+            <i class="text-[12px]" nz-icon nzType="plus"></i>
+            <span class="m-0">Agregar medicamento</span>
+          </button>
+        </div>
+          <!-- end: New Contact -->
+       </div>
+  
+         <div class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+            
+             <div class="p-[25px]">
+               <div class="flex items-center justify-center w-full mt-5 mb-[25px] max-md:flex-col max-md:justify-center gap-[15px]">
+                 <div class="inline-flex items-center flex-wrap w-full gap-[20px] max-md:justify-center">
+                 </div>
+                 <div class="ssm:min-w-[280px]">
+                   <nz-input-group class="h-10 inline-flex items-center text-body dark:text-white/60 bg-white dark:bg-white/10 border-normal border-1 dark:border-white/10 rounded-[6px] px-[20px]">
+                     <i class="text-light dark:text-white/[.87] text-[18px]" nz-icon nzType="search"></i>
+                     <input
+                       class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
+                       type="text"
+                       nz-input
+                       placeholder="Buscar"
+                       [(ngModel)]="contactSearchValue"
+                       (ngModelChange)="filterItems()"
+                     />
+                   </nz-input-group>
+                 </div>
+               </div>
+               <div class="w-full overflow-x-auto">
+                 <nz-table #basicTable [nzData]="filteredData" [nzFrontPagination]="true" [nzShowPagination]="true" class="max-h-[650px]">
+                   <thead>
+                     <tr>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Nombre</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Tipo de medicamento</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Unidad de medida</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"></th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr class="group" *ngFor="let person of filteredData">
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.nombre }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.tipoMedicamento }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.unidadMedida }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent"></td> 
+                      
+                     </tr>
+                   </tbody>
+                 </nz-table>
+               </div>
+             </div>
+           </div>
+     </ng-container>
+   </div>
+   </div>
+   

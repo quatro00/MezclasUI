@@ -25,7 +25,6 @@ import { ThemeConstantService } from './shared/services/theme-constant.service';
 import { ServicesInterceptorInterceptor } from './interceptors/services-interceptor.interceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { DashboardComponent } from './pages/inventario/dashboard/dashboard.component';
 
 registerLocaleData(en);
 
@@ -34,7 +33,6 @@ registerLocaleData(en);
         AppComponent,
         CommonLayoutComponent,
         FullLayoutComponent,
-        DashboardComponent,
     ],
     imports: [
         BrowserModule,

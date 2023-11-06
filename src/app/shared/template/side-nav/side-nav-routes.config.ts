@@ -9,7 +9,7 @@ export const AdminRoutes: SideNavInterface[] = [
     title: 'Dashboard',
     iconType: 'nzIcon',
     iconTheme: 'outline',
-    icon: 'home-add',
+    icon: '',
     submenu:[]
   },
   {
@@ -17,7 +17,7 @@ export const AdminRoutes: SideNavInterface[] = [
     title: 'Catalogo de articulos',
     iconType: 'nzIcon',
     iconTheme: 'outline',
-    icon: 'home-add',
+    icon: '',
     submenu:[]
   },
   {
@@ -25,8 +25,42 @@ export const AdminRoutes: SideNavInterface[] = [
     title: 'Usuarios',
     iconType: 'nzIcon',
     iconTheme: 'outline',
-    icon: 'home-add',
+    icon: '',
     submenu:[]
+  },
+  {
+    path: '',
+    title: 'Catalogos',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: '',
+    submenu:[
+      {
+        path: 'administrador/catalogo-medicamentos',
+        title: 'Catalogo de medicamentos',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      }
+    ]
+  },
+  {
+    path: '',
+    title: 'Inventarios',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: '',
+    submenu:[
+      {
+        path: 'inventario/entrada-inventario',
+        title: 'Entrada de inventario',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      }
+    ]
   },
 ]
 

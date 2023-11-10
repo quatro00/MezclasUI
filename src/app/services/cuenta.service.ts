@@ -22,5 +22,11 @@ export class CuentaService {
     return this.http.post<SucursalCuentaModel>(`${environment.apiBaseUrl}/api/${this.service}/AsociarSucursalCuenta`,request);
   }
   
+  getCuentasBySucursal(id:string):Observable<cuentaModel[]>{
+    return this.http.get<cuentaModel[]>(`${environment.apiBaseUrl}/api/${this.service}/GetCuentasBySucursal/${id}`);
+  }
 
+  borrarCuentaSucursal(request:SucursalCuentaModel):Observable<SucursalCuentaModel>{
+    return this.http.post<SucursalCuentaModel>(`${environment.apiBaseUrl}/api/${this.service}/BorrarCuentaSucursal`,request);
+  }
 }

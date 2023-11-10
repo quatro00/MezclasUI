@@ -18,68 +18,103 @@ export class EditarSucursalReponsablesComponent {
   @ViewChild('scrollContainer', { static: false }) scrollContainer: ElementRef;
 
   materialForm!: UntypedFormGroup;
-  
+
   data: any[] = [];
   filteredData: any[] = [];
   cuentas: any[] = [];
-  loadingbtn_Entrar:boolean = false;
+  loadingbtn_Entrar: boolean = false;
   constructor(
     private fb: FormBuilder,
     private modalService: NzModalService,
     private cuentaService: CuentaService) { }
 
-    ngOnInit() {
+  ngOnInit() {
 
-      this.cuentaService.getAll().
+    this.cuentaService.getAll().
       subscribe({
-        next:(response)=>{
+        next: (response) => {
           this.cuentas = response;
-        }})
-
-      this.filteredData = this.horarios;
-      this.materialForm = this.fb.group({
-        cuentaId: ['', [Validators.required]],
-      });
-
-     
-    }
-
-    loadData():void{
-      this.filteredData = [];
-    }
-
-    submitForm(): void {
-      
-      if (this.materialForm.valid) {
-       this.loadingbtn_Entrar = true;
-        
-        var request:SucursalCuentaModel = {
-          sucursalId: this.sucursalId,
-          cuentaId: this.materialForm.value.cuentaId,
-          
         }
+      })
 
-        console.log(request);
-        this.cuentaService.asociarSucursalCuenta(request).
+    this.cuentaService.getCuentasBySucursal(this.sucursalId).
+      subscribe({
+        next: (response) => {
+          this.filteredData = response;
+          this.data = response;
+        }
+      })
+    this.filteredData = this.horarios;
+    this.materialForm = this.fb.group({
+      cuentaId: ['', [Validators.required]],
+    });
+
+
+  }
+
+  loadData(): void {
+    this.cuentaService.getCuentasBySucursal(this.sucursalId).
+    subscribe({
+      next: (response) => {
+        this.filteredData = response;
+        this.data = response;
+      }
+    })
+  }
+
+  submitForm(): void {
+
+    if (this.materialForm.valid) {
+      this.loadingbtn_Entrar = true;
+
+      var request: SucursalCuentaModel = {
+        sucursalId: this.sucursalId,
+        cuentaId: this.materialForm.value.cuentaId,
+
+      }
+
+      this.cuentaService.asociarSucursalCuenta(request).
         subscribe({
-          next:(response)=>{
-            this.modalService.closeAll();
+          next: (response) => {
+            //this.modalService.closeAll();
             this.materialForm.reset();
             this.loadingbtn_Entrar = false;
             this.loadData();
           },
-          error: (err) => {this.loadingbtn_Entrar = false;},
+          error: (err) => { this.loadingbtn_Entrar = false; },
         })
-          
-      } else {
-        Object.values(this.materialForm.controls).forEach((control) => {
-          if (control.invalid) {
-            control.markAsDirty();
-            control.updateValueAndValidity({ onlySelf: true });
-          }
-        });
-      }
-    }
 
+    } else {
+      Object.values(this.materialForm.controls).forEach((control) => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+    }
+  }
+
+
+  borrarResponsable(cuentaId:string):void{
+    this.modalService.confirm({
+      nzTitle: '<h2 class="text-dark dark:text-white/[.87]">Deseas eliminar el registro seleccionado?</h2>',
+      nzOnOk: () =>{
+       
+        var request: SucursalCuentaModel = {
+          cuentaId:cuentaId,
+          sucursalId: this.sucursalId
+        };
+
+        this.cuentaService.borrarCuentaSucursal(request)
+        .subscribe({
+          next: (response) => {
+            //this.modalService.cl();
+            this.loadData();
+          }
+        })
+        
+      }
+    });
+  }
 
 }

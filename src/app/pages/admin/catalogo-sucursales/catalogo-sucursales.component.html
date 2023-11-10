@@ -1,0 +1,178 @@
+<nz-modal
+[nzStyle]="{ top: '80px' }"
+[(nzVisible)]="isVisibleHorarios"
+nzTitle="Horarios de la sucursal"
+[nzFooter]="modalFooter"
+nzWidth ="1600"
+(nzOnCancel)="handleCancelTop()"
+(nzOnOk)="handleOkTop()"
+>
+<ng-container *nzModalContent>
+  <app-editar-sucursal-horarios [sucursalId]="sucursalId" [horarios]="horarios"></app-editar-sucursal-horarios>
+</ng-container>
+<ng-template #modalFooter>
+  
+</ng-template>
+</nz-modal>
+
+<nz-modal
+[nzStyle]="{ top: '80px' }"
+[(nzVisible)]="isVisibleResponsables"
+nzTitle="Responsables"
+[nzFooter]="modalFooter"
+nzWidth ="800px"
+(nzOnCancel)="handleCancelTop()"
+(nzOnOk)="handleOkTop()"
+>
+<ng-container *nzModalContent>
+  <app-editar-sucursal-reponsables [sucursalId]="sucursalId" [horarios]="horarios"></app-editar-sucursal-reponsables>
+</ng-container>
+<ng-template #modalFooter>
+  
+</ng-template>
+</nz-modal>
+
+
+<div nz-row nzGutter="25">
+    <!-- skeleton -->
+   <ng-template #loadingSkeleton>
+     <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzShape]="circle" [nzActive]="true"
+       [nzParagraph]="{ rows: 5 }"></nz-skeleton>
+   </ng-template>
+   <!-- skeleton -->
+   <div nz-col nzXs="24" nzMd="12">
+     <ng-template #newItem>
+       <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Nombre:</nz-form-label>
+              <input formControlName="nombre" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Nombre de la sucursal">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Direccion:</nz-form-label>
+              <input formControlName="direccion" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Direccion de la sucursal">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Contacto:</nz-form-label>
+              <input formControlName="contacto" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Nombre del contacto">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Telefono:</nz-form-label>
+              <input formControlName="telefono" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Telefono de la sucursal">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Telefono 2:</nz-form-label>
+              <input formControlName="telefono2" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Telefono de la sucursal">
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark dark:text-white/[.87] capitalize mb-[10px]">Correo electronico:</nz-form-label>
+              <input formControlName="correoElectronico" style="color:white" class="h-[50px] border-normal dark:border-white/10 px-[20px] placeholder-shown:text-light-extra dark:placeholder-shown:text-white/60 rounded-[5px] dark:bg-white/10" type="text" nz-input placeholder="Correo electronico de la sucursal">
+            </nz-form-control>
+        </nz-form-item>
+       </form>
+     </ng-template>
+     <ng-template #modalFooter>
+        <button  class="items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]"nz-button  (click)="submitForm()">Aceptar</button>
+      </ng-template>
+     <!-- :End New project added -->
+   </div>
+   
+   <div nz-col nzXs="24" class="mb-[25px]">
+     <ng-container *ngIf="loadCatalogo; else loadingSkeleton">
+       <div nz-col nzXs="24" class="mb-[25px]">
+         <!-- New Contact -->
+         <div class="flex items-center justify-center md:justify-end">
+          <button class="flex items-center px-[14px] text-sm text-white rounded-md font-semibold bg-primary border-primary h-10 gap-[6px]" nz-button (click)="showNew(newItem, modalFooter)">
+            <i class="text-[12px]" nz-icon nzType="plus"></i>
+            <span class="m-0">Agregar sucursal</span>
+          </button>
+        </div>
+          <!-- end: New Contact -->
+       </div>
+  
+         <div class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative mb-[25px]">
+            
+             <div class="p-[25px]">
+               <div class="flex items-center justify-center w-full mt-5 mb-[25px] max-md:flex-col max-md:justify-center gap-[15px]">
+                 <div class="inline-flex items-center flex-wrap w-full gap-[20px] max-md:justify-center">
+                 </div>
+                 <div class="ssm:min-w-[280px]">
+                   <nz-input-group class="h-10 inline-flex items-center text-body dark:text-white/60 bg-white dark:bg-white/10 border-normal border-1 dark:border-white/10 rounded-[6px] px-[20px]">
+                     <i class="text-light dark:text-white/[.87] text-[18px]" nz-icon nzType="search"></i>
+                     <input
+                       class="bg-transparent border-none text-[15px] shadow-none text-dark dark:text-white/[.87] flex items-center"
+                       type="text"
+                       nz-input
+                       placeholder="Buscar"
+                       [(ngModel)]="contactSearchValue"
+                       (ngModelChange)="filterItems()"
+                     />
+                   </nz-input-group>
+                 </div>
+               </div>
+               <div class="w-full overflow-x-auto">
+                 <nz-table #basicTable [nzData]="filteredData" [nzFrontPagination]="true" [nzShowPagination]="true" class="max-h-[650px]">
+                   <thead>
+                     <tr>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Nombre</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Direccion</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Nombre contacto</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Telefono</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Telefono 2</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Correo electronico</th>
+                       <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"></th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     <tr class="group" *ngFor="let person of filteredData">
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.nombre }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.direccion }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.contacto }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.telefono }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.telefono2 }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.correoElectronico }}</td> 
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">
+                        <button nz-button
+                        (click)="showModalHorarios(person.id)"
+                        class="capitalize bg-success/10 hover:bg-success-hbr border-none text-success hover:text-white text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[32px]">
+                        <i class="text-[12px]" nz-icon nzType="calendar"></i>
+                        &nbsp;&nbsp;
+                        <span class="m-0">Horarios</span>
+                      </button>
+                      <br/>
+                      <button nz-button
+                      (click)="showModalResponsables(person.id)"
+                      class="capitalize bg-secondary/10 hover:bg-secondary-hbr border-none text-secondary hover:text-white text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[32px]">
+                      <i class="text-[12px]" nz-icon nzType="user"></i>
+                      &nbsp;&nbsp;
+                      <span class="m-0">Responsables</span>
+                    </button>
+
+                      </td>
+                      
+                     </tr>
+                   </tbody>
+                 </nz-table>
+               </div>
+             </div>
+           </div>
+     </ng-container>
+   </div>
+   </div>
+   

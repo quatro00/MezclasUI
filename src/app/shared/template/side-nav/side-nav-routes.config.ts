@@ -37,7 +37,15 @@ export const AdminRoutes: SideNavInterface[] = [
     submenu:[
       {
         path: 'administrador/catalogo-medicamentos',
-        title: 'Catalogo de medicamentos',
+        title: 'Medicamentos',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      },
+      {
+        path: 'administrador/catalogo-sucursales',
+        title: 'Sucursales',
         iconType: 'nzIcon',
         iconTheme: 'outline',
         icon: '',
@@ -55,6 +63,14 @@ export const AdminRoutes: SideNavInterface[] = [
       {
         path: 'inventario/entrada-inventario',
         title: 'Entrada de inventario',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      },
+      {
+        path: 'inventario/equivalencia-inventario',
+        title: 'Equivalencias',
         iconType: 'nzIcon',
         iconTheme: 'outline',
         icon: '',

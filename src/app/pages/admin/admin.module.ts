@@ -43,8 +43,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CatalogoarticulosComponent } from './catalogoarticulos/catalogoarticulos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CatalogoMedicamentosComponent } from './catalogo-medicamentos/catalogo-medicamentos.component';
+import { CatalogoSucursalesComponent } from './catalogo-sucursales/catalogo-sucursales.component';
+import { EditarSucursalHorariosComponent } from './editar-sucursal-horarios/editar-sucursal-horarios.component';
+import { PerfectScrollbarModule } from 'ngx-om-perfect-scrollbar';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { EditarSucursalReponsablesComponent } from './editar-sucursal-reponsables/editar-sucursal-reponsables.component';
 
 const antdModule = [
+  NzButtonModule,
   NzDropDownModule,
   AngularSvgIconModule.forRoot(),
   NgChartsModule,
@@ -54,6 +60,7 @@ const antdModule = [
   NzSkeletonModule,
   AdminRoutingModule,
   NzModalModule,
+  PerfectScrollbarModule,
   //FeaturesRoutingModule,
   FormsModule,
   ReactiveFormsModule,
@@ -89,7 +96,10 @@ const antdModule = [
     DashboardComponent,
        CatalogoarticulosComponent,
        UsuariosComponent,
-       CatalogoMedicamentosComponent
+       CatalogoMedicamentosComponent,
+       CatalogoSucursalesComponent,
+       EditarSucursalHorariosComponent,
+       EditarSucursalReponsablesComponent
   ],
   imports: [
     CommonModule,

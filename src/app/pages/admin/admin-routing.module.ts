@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CatalogoarticulosComponent } from './catalogoarticulos/catalogoarticulos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CatalogoMedicamentosComponent } from './catalogo-medicamentos/catalogo-medicamentos.component';
+import { CatalogoSucursalesComponent } from './catalogo-sucursales/catalogo-sucursales.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,14 @@ const routes: Routes = [
     component: CatalogoMedicamentosComponent,
     data: {
         title: 'Catalogo de medicamentos',
+    },
+    //canActivate: [authAdminGuard]
+  },
+  {
+    path: 'catalogo-sucursales',
+    component: CatalogoSucursalesComponent,
+    data: {
+        title: 'Catalogo de sucursales',
     },
     //canActivate: [authAdminGuard]
   },

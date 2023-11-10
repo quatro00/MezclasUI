@@ -41,8 +41,11 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InventarioRoutingModule } from './inventario-routing.module';
 import { EntradaInventarioComponent } from './entrada-inventario/entrada-inventario.component';
+import { EquivalenciaInventarioComponent } from './equivalencia-inventario/equivalencia-inventario.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 const antdModule = [
+  NzButtonModule,
   NzDropDownModule,
   AngularSvgIconModule.forRoot(),
   NgChartsModule,
@@ -85,7 +88,8 @@ const antdModule = [
   declarations: [
   
     DashboardComponent,
-       EntradaInventarioComponent
+       EntradaInventarioComponent,
+       EquivalenciaInventarioComponent
   ],
   imports: [
     CommonModule,

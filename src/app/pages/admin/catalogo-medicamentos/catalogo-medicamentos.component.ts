@@ -99,7 +99,6 @@ export class CatalogoMedicamentosComponent {
     }
 
     submitForm(): void {
-      console.log(this.validateForm.valid);
       if (this.validateForm.valid) {
         
   
